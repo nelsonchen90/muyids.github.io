@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[124],{510:function(t,e,n){"use strict";n.r(e);var s=n(42),l=Object(s.a)({},(function(){var t=this.$createElement,e=this._self._c||t;return e("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[e("p",[this._v("语言是工具，了解基本语法，掌握语言的特性，才能更好地使用各种工具")])])}),[],!1,null,null,null);e.default=l.exports}}]);

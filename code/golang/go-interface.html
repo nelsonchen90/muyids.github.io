@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Go语言基础之接口 | 木易東</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    <link,[object Object] 0="meta" 1="[object Object]"></link,[object Object]>
+    <meta name="description" content="路漫漫其修远兮，吾将上下而求索">
+    <link rel="preload" href="/assets/css/0.styles.ee4150ce.css" as="style"><link rel="preload" href="/assets/js/app.4ab909ce.js" as="script"><link rel="preload" href="/assets/js/2.268f4e54.js" as="script"><link rel="preload" href="/assets/js/127.b36113ef.js" as="script"><link rel="prefetch" href="/assets/js/10.209d185b.js"><link rel="prefetch" href="/assets/js/100.ed3b3fa7.js"><link rel="prefetch" href="/assets/js/101.0bc6f23b.js"><link rel="prefetch" href="/assets/js/102.266baf3f.js"><link rel="prefetch" href="/assets/js/103.41770349.js"><link rel="prefetch" href="/assets/js/104.d6b11437.js"><link rel="prefetch" href="/assets/js/105.12842ff7.js"><link rel="prefetch" href="/assets/js/106.ff323f9e.js"><link rel="prefetch" href="/assets/js/107.275a0c10.js"><link rel="prefetch" href="/assets/js/108.5b919ed5.js"><link rel="prefetch" href="/assets/js/109.332c56e1.js"><link rel="prefetch" href="/assets/js/11.f3d69358.js"><link rel="prefetch" href="/assets/js/110.e88d5e3b.js"><link rel="prefetch" href="/assets/js/111.098714a4.js"><link rel="prefetch" href="/assets/js/112.fc7ba3e2.js"><link rel="prefetch" href="/assets/js/113.a08c2b6f.js"><link rel="prefetch" href="/assets/js/114.c4d0f581.js"><link rel="prefetch" href="/assets/js/115.317cb7ca.js"><link rel="prefetch" href="/assets/js/116.97e580b5.js"><link rel="prefetch" href="/assets/js/117.121ea3ac.js"><link rel="prefetch" href="/assets/js/118.a0665182.js"><link rel="prefetch" href="/assets/js/119.7325dcf0.js"><link rel="prefetch" href="/assets/js/12.df591af5.js"><link rel="prefetch" href="/assets/js/120.326b52e9.js"><link rel="prefetch" href="/assets/js/121.f8bc07cd.js"><link rel="prefetch" href="/assets/js/122.3cb1ec13.js"><link rel="prefetch" href="/assets/js/123.ab44e19c.js"><link rel="prefetch" href="/assets/js/124.ef229142.js"><link rel="prefetch" href="/assets/js/125.c7c6e12d.js"><link rel="prefetch" href="/assets/js/126.442fa3e6.js"><link rel="prefetch" href="/assets/js/128.a489ffc0.js"><link rel="prefetch" href="/assets/js/129.ed5adff8.js"><link rel="prefetch" href="/assets/js/13.9ab5db74.js"><link rel="prefetch" href="/assets/js/130.41c2a9b4.js"><link rel="prefetch" href="/assets/js/131.1ea71563.js"><link rel="prefetch" href="/assets/js/132.0f926da5.js"><link rel="prefetch" href="/assets/js/133.17e53083.js"><link rel="prefetch" href="/assets/js/134.382858c4.js"><link rel="prefetch" href="/assets/js/135.03feac86.js"><link rel="prefetch" href="/assets/js/136.60959adc.js"><link rel="prefetch" href="/assets/js/137.cc05055e.js"><link rel="prefetch" href="/assets/js/138.6e37fdbd.js"><link rel="prefetch" href="/assets/js/139.53f853a7.js"><link rel="prefetch" href="/assets/js/14.d8bf8180.js"><link rel="prefetch" href="/assets/js/140.c87f4519.js"><link rel="prefetch" href="/assets/js/141.2284d2b3.js"><link rel="prefetch" href="/assets/js/142.55320a45.js"><link rel="prefetch" href="/assets/js/143.fdfacb09.js"><link rel="prefetch" href="/assets/js/144.152e977e.js"><link rel="prefetch" href="/assets/js/145.0498b272.js"><link rel="prefetch" href="/assets/js/146.dd4b2b24.js"><link rel="prefetch" href="/assets/js/147.c2b141cf.js"><link rel="prefetch" href="/assets/js/148.edf0d726.js"><link rel="prefetch" href="/assets/js/149.72f09253.js"><link rel="prefetch" href="/assets/js/15.386b2793.js"><link rel="prefetch" href="/assets/js/150.39b686e7.js"><link rel="prefetch" href="/assets/js/151.6ddc4eba.js"><link rel="prefetch" href="/assets/js/152.47d4d5d0.js"><link rel="prefetch" href="/assets/js/153.93edd93b.js"><link rel="prefetch" href="/assets/js/154.ed8a1efe.js"><link rel="prefetch" href="/assets/js/155.84069324.js"><link rel="prefetch" href="/assets/js/156.0981fa5b.js"><link rel="prefetch" href="/assets/js/157.b4b037d6.js"><link rel="prefetch" href="/assets/js/158.de7f19e2.js"><link rel="prefetch" href="/assets/js/159.5552f303.js"><link rel="prefetch" href="/assets/js/16.16143f64.js"><link rel="prefetch" href="/assets/js/160.aac84d1a.js"><link rel="prefetch" href="/assets/js/161.57acc46e.js"><link rel="prefetch" href="/assets/js/162.17be9e3e.js"><link rel="prefetch" href="/assets/js/163.7d0b5f23.js"><link rel="prefetch" href="/assets/js/164.0090922d.js"><link rel="prefetch" href="/assets/js/165.ef7c2a2e.js"><link rel="prefetch" href="/assets/js/166.5a56227f.js"><link rel="prefetch" href="/assets/js/167.0695d6d5.js"><link rel="prefetch" href="/assets/js/168.e718301b.js"><link rel="prefetch" href="/assets/js/169.0dfae1c1.js"><link rel="prefetch" href="/assets/js/17.560a3e0a.js"><link rel="prefetch" href="/assets/js/170.2c0cdfce.js"><link rel="prefetch" href="/assets/js/171.290835f2.js"><link rel="prefetch" href="/assets/js/172.6e354475.js"><link rel="prefetch" href="/assets/js/173.35718045.js"><link rel="prefetch" href="/assets/js/174.55e350a8.js"><link rel="prefetch" href="/assets/js/175.7fe8e56c.js"><link rel="prefetch" href="/assets/js/176.5bf41792.js"><link rel="prefetch" href="/assets/js/177.51b9503f.js"><link rel="prefetch" href="/assets/js/178.7f4c1269.js"><link rel="prefetch" href="/assets/js/179.7bb26f94.js"><link rel="prefetch" href="/assets/js/18.6c788be1.js"><link rel="prefetch" href="/assets/js/180.c6f48737.js"><link rel="prefetch" href="/assets/js/181.6f40d208.js"><link rel="prefetch" href="/assets/js/182.cc8d6d4a.js"><link rel="prefetch" href="/assets/js/183.17deaed8.js"><link rel="prefetch" href="/assets/js/184.483c498a.js"><link rel="prefetch" href="/assets/js/185.f175ff65.js"><link rel="prefetch" href="/assets/js/186.9af453a8.js"><link rel="prefetch" href="/assets/js/187.bede2d0f.js"><link rel="prefetch" href="/assets/js/188.323ce242.js"><link rel="prefetch" href="/assets/js/189.1a925619.js"><link rel="prefetch" href="/assets/js/19.b2e312a4.js"><link rel="prefetch" href="/assets/js/190.4d691d6a.js"><link rel="prefetch" href="/assets/js/191.5a781b2d.js"><link rel="prefetch" href="/assets/js/192.1ffd0916.js"><link rel="prefetch" href="/assets/js/193.7ec310d1.js"><link rel="prefetch" href="/assets/js/194.d47c85ca.js"><link rel="prefetch" href="/assets/js/195.84c82c66.js"><link rel="prefetch" href="/assets/js/196.c77dc4ad.js"><link rel="prefetch" href="/assets/js/197.8a07281c.js"><link rel="prefetch" href="/assets/js/198.86f529c1.js"><link rel="prefetch" href="/assets/js/199.15e8d4c3.js"><link rel="prefetch" href="/assets/js/20.4d25735a.js"><link rel="prefetch" href="/assets/js/200.b3c8df9d.js"><link rel="prefetch" href="/assets/js/201.d83e7de9.js"><link rel="prefetch" href="/assets/js/202.05586c6f.js"><link rel="prefetch" href="/assets/js/203.2ea42e2f.js"><link rel="prefetch" href="/assets/js/204.41b1e1cb.js"><link rel="prefetch" href="/assets/js/205.cd69877a.js"><link rel="prefetch" href="/assets/js/206.be348d56.js"><link rel="prefetch" href="/assets/js/207.b9e8002f.js"><link rel="prefetch" href="/assets/js/208.962350ff.js"><link rel="prefetch" href="/assets/js/209.4fd61d0c.js"><link rel="prefetch" href="/assets/js/21.63d223ed.js"><link rel="prefetch" href="/assets/js/210.cc8c457c.js"><link rel="prefetch" href="/assets/js/211.d251ee9f.js"><link rel="prefetch" href="/assets/js/212.5007cefb.js"><link rel="prefetch" href="/assets/js/213.d33d9f03.js"><link rel="prefetch" href="/assets/js/214.503c33ec.js"><link rel="prefetch" href="/assets/js/215.df94bc76.js"><link rel="prefetch" href="/assets/js/216.163a50bd.js"><link rel="prefetch" href="/assets/js/217.21b20dbb.js"><link rel="prefetch" href="/assets/js/218.edf914d2.js"><link rel="prefetch" href="/assets/js/219.6b54dbc4.js"><link rel="prefetch" href="/assets/js/22.42386486.js"><link rel="prefetch" href="/assets/js/220.b344f421.js"><link rel="prefetch" href="/assets/js/221.d93c8092.js"><link rel="prefetch" href="/assets/js/222.8e918999.js"><link rel="prefetch" href="/assets/js/223.671a27bc.js"><link rel="prefetch" href="/assets/js/224.53c00cb7.js"><link rel="prefetch" href="/assets/js/225.615e5576.js"><link rel="prefetch" href="/assets/js/226.d7d4d768.js"><link rel="prefetch" href="/assets/js/227.8dafb796.js"><link rel="prefetch" href="/assets/js/228.7312b790.js"><link rel="prefetch" href="/assets/js/229.f5724c5b.js"><link rel="prefetch" href="/assets/js/23.ee235590.js"><link rel="prefetch" href="/assets/js/230.5be9199b.js"><link rel="prefetch" href="/assets/js/231.6b143716.js"><link rel="prefetch" href="/assets/js/24.51c34572.js"><link rel="prefetch" href="/assets/js/25.e697ec23.js"><link rel="prefetch" href="/assets/js/26.246009e9.js"><link rel="prefetch" href="/assets/js/27.d4c92ad1.js"><link rel="prefetch" href="/assets/js/28.2ba95f3c.js"><link rel="prefetch" href="/assets/js/29.9772506d.js"><link rel="prefetch" href="/assets/js/3.ff5569b2.js"><link rel="prefetch" href="/assets/js/30.dae831a7.js"><link rel="prefetch" href="/assets/js/31.9ac2092a.js"><link rel="prefetch" href="/assets/js/32.3c2776c5.js"><link rel="prefetch" href="/assets/js/33.95a0d7b7.js"><link rel="prefetch" href="/assets/js/34.a145664d.js"><link rel="prefetch" href="/assets/js/35.357ff9ec.js"><link rel="prefetch" href="/assets/js/36.1594f674.js"><link rel="prefetch" href="/assets/js/37.5045d89d.js"><link rel="prefetch" href="/assets/js/38.a87807f8.js"><link rel="prefetch" href="/assets/js/39.22360d3d.js"><link rel="prefetch" href="/assets/js/4.cab6e33f.js"><link rel="prefetch" href="/assets/js/40.ed8d7ea6.js"><link rel="prefetch" href="/assets/js/41.86dc2857.js"><link rel="prefetch" href="/assets/js/42.2719d1a7.js"><link rel="prefetch" href="/assets/js/43.1121877d.js"><link rel="prefetch" href="/assets/js/44.d2894bdb.js"><link rel="prefetch" href="/assets/js/45.a4f59145.js"><link rel="prefetch" href="/assets/js/46.e91142f2.js"><link rel="prefetch" href="/assets/js/47.6120f6e3.js"><link rel="prefetch" href="/assets/js/48.36593726.js"><link rel="prefetch" href="/assets/js/49.280a435b.js"><link rel="prefetch" href="/assets/js/5.db6eddb9.js"><link rel="prefetch" href="/assets/js/50.ac5aa141.js"><link rel="prefetch" href="/assets/js/51.ec413eaa.js"><link rel="prefetch" href="/assets/js/52.3b4de5ad.js"><link rel="prefetch" href="/assets/js/53.e6fd3dc2.js"><link rel="prefetch" href="/assets/js/54.e3991388.js"><link rel="prefetch" href="/assets/js/55.491b8d15.js"><link rel="prefetch" href="/assets/js/56.45ada881.js"><link rel="prefetch" href="/assets/js/57.92fbd908.js"><link rel="prefetch" href="/assets/js/58.08ac193c.js"><link rel="prefetch" href="/assets/js/59.7717fd50.js"><link rel="prefetch" href="/assets/js/6.b5995673.js"><link rel="prefetch" href="/assets/js/60.8ed1de3b.js"><link rel="prefetch" href="/assets/js/61.b12480ab.js"><link rel="prefetch" href="/assets/js/62.ad353c0f.js"><link rel="prefetch" href="/assets/js/63.ab51b80a.js"><link rel="prefetch" href="/assets/js/64.7e0eda3a.js"><link rel="prefetch" href="/assets/js/65.82f1f6c8.js"><link rel="prefetch" href="/assets/js/66.52934df3.js"><link rel="prefetch" href="/assets/js/67.e7eda742.js"><link rel="prefetch" href="/assets/js/68.0bbccf1e.js"><link rel="prefetch" href="/assets/js/69.b4cd09c5.js"><link rel="prefetch" href="/assets/js/7.57a25aa5.js"><link rel="prefetch" href="/assets/js/70.d05753e2.js"><link rel="prefetch" href="/assets/js/71.17961db2.js"><link rel="prefetch" href="/assets/js/72.c0ade5be.js"><link rel="prefetch" href="/assets/js/73.533d59cb.js"><link rel="prefetch" href="/assets/js/74.989bb737.js"><link rel="prefetch" href="/assets/js/75.8c28adbe.js"><link rel="prefetch" href="/assets/js/76.cbfd992c.js"><link rel="prefetch" href="/assets/js/77.cb1a4e31.js"><link rel="prefetch" href="/assets/js/78.5d14c420.js"><link rel="prefetch" href="/assets/js/79.b86ce7b4.js"><link rel="prefetch" href="/assets/js/8.0151b66b.js"><link rel="prefetch" href="/assets/js/80.e87d280d.js"><link rel="prefetch" href="/assets/js/81.be522b9f.js"><link rel="prefetch" href="/assets/js/82.dc2fc3e3.js"><link rel="prefetch" href="/assets/js/83.25e38715.js"><link rel="prefetch" href="/assets/js/84.500d1f16.js"><link rel="prefetch" href="/assets/js/85.5e2f5425.js"><link rel="prefetch" href="/assets/js/86.d1221f2f.js"><link rel="prefetch" href="/assets/js/87.8825f725.js"><link rel="prefetch" href="/assets/js/88.ec67c745.js"><link rel="prefetch" href="/assets/js/89.a3403b9c.js"><link rel="prefetch" href="/assets/js/9.cc5aac35.js"><link rel="prefetch" href="/assets/js/90.6fd5917a.js"><link rel="prefetch" href="/assets/js/91.790e4ae3.js"><link rel="prefetch" href="/assets/js/92.ce5cac72.js"><link rel="prefetch" href="/assets/js/93.b7acc201.js"><link rel="prefetch" href="/assets/js/94.3001f17b.js"><link rel="prefetch" href="/assets/js/95.8f55bc4f.js"><link rel="prefetch" href="/assets/js/96.9eaa4660.js"><link rel="prefetch" href="/assets/js/97.a2ada7d4.js"><link rel="prefetch" href="/assets/js/98.b694d4dd.js"><link rel="prefetch" href="/assets/js/99.6542bae0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee4150ce.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/hope.jpg" alt="木易東" class="logo"> <span class="site-name can-hide">木易東</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  HOME
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  学习·笔记
+</a></div><div class="nav-item"><a href="/blogs/" class="nav-link">
+  进阶·博文
+</a></div><div class="nav-item"><a href="/code/" class="nav-link router-link-active">
+  编程·语言
+</a></div><div class="nav-item"><a href="/alg/" class="nav-link">
+  算法·练习
+</a></div><div class="nav-item"><a href="/system/" class="nav-link">
+  系统·设计
+</a></div><div class="nav-item"><a href="/year/after/year/" class="nav-link">
+  一年·一技
+</a></div><div class="nav-item"><a href="https://github.com/muyids" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GITHUB
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  HOME
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  学习·笔记
+</a></div><div class="nav-item"><a href="/blogs/" class="nav-link">
+  进阶·博文
+</a></div><div class="nav-item"><a href="/code/" class="nav-link router-link-active">
+  编程·语言
+</a></div><div class="nav-item"><a href="/alg/" class="nav-link">
+  算法·练习
+</a></div><div class="nav-item"><a href="/system/" class="nav-link">
+  系统·设计
+</a></div><div class="nav-item"><a href="/year/after/year/" class="nav-link">
+  一年·一技
+</a></div><div class="nav-item"><a href="https://github.com/muyids" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GITHUB
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Javascript</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/code/js/1.变量和类型.html" class="sidebar-link">变量和类型</a></li><li><a href="/code/js/2.面向对象.html" class="sidebar-link">面向对象</a></li><li><a href="/code/js/3.作用域和闭包.html" class="sidebar-link">作用域和闭包</a></li><li><a href="/code/js/4.nodejs.html" class="sidebar-link">Node.js</a></li><li><a href="/code/js/5.es6.html" class="sidebar-link">ES6</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/code/java/1.Map家族.html" class="sidebar-link">Map</a></li><li><a href="/code/java/2.collection.html" class="sidebar-link">Collection</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Golang</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/code/golang/go-base.html" class="sidebar-link">Golang基础</a></li><li><a href="/code/golang/go-interface.html" aria-current="page" class="active sidebar-link">接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#接口类型" class="sidebar-link">接口类型</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#为什么要使用接口" class="sidebar-link">为什么要使用接口</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#接口的定义" class="sidebar-link">接口的定义</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#实现接口的条件" class="sidebar-link">实现接口的条件</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#接口类型变量" class="sidebar-link">接口类型变量</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#值接收者和指针接收者实现接口的区别" class="sidebar-link">值接收者和指针接收者实现接口的区别</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#值接收者实现接口" class="sidebar-link">值接收者实现接口</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#指针接收者实现接口" class="sidebar-link">指针接收者实现接口</a></li></ul></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#类型与接口的关系" class="sidebar-link">类型与接口的关系</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#一个类型实现多个接口" class="sidebar-link">一个类型实现多个接口</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#多个类型实现同一接口" class="sidebar-link">多个类型实现同一接口</a></li></ul></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#接口嵌套" class="sidebar-link">接口嵌套</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#空接口" class="sidebar-link">空接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#空接口的定义" class="sidebar-link">空接口的定义</a></li></ul></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#空接口的应用" class="sidebar-link">空接口的应用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#空接口作为函数的参数" class="sidebar-link">空接口作为函数的参数</a></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#空接口作为map的值" class="sidebar-link">空接口作为map的值</a></li></ul></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#类型断言" class="sidebar-link">类型断言</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#接口值" class="sidebar-link">接口值</a></li></ul></li><li class="sidebar-sub-header"><a href="/code/golang/go-interface.html#练习题" class="sidebar-link">练习题</a></li></ul></li><li><a href="/code/golang/go-concurrency.html" class="sidebar-link">Go并发编程</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>在Go语言中<code>接口（interface）</code>是一种类型，<code>一种抽象的类型</code>。</p> <p>接口（interface）定义了一个对象的行为规范，只定义规范不实现，由具体的对象来实现规范的细节。</p> <h2 id="接口类型"><a href="#接口类型" class="header-anchor">#</a> 接口类型</h2> <p>在Go语言中接口（interface）是一种类型，一种抽象的类型。</p> <p><code>interface</code>是一组<code>method</code>的集合，是<code>duck-type programming</code>的一种体现。
+接口做的事情就像是定义一个协议（规则），只要一台机器有洗衣服和甩干的功能，我就称它为洗衣机。不关心属性（数据），只关心行为（方法）。</p> <p>为了保护你的Go语言职业生涯，请牢记接口（interface）是一种类型。</p> <h2 id="为什么要使用接口"><a href="#为什么要使用接口" class="header-anchor">#</a> 为什么要使用接口</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>type Cat struct{}
+
+func (c Cat) Say() string { return &quot;喵喵喵&quot; }
+
+type Dog struct{}
+
+func (d Dog) Say() string { return &quot;汪汪汪&quot; }
+
+func main() {
+	c := Cat{}
+	fmt.Println(&quot;猫:&quot;, c.Say())
+	d := Dog{}
+	fmt.Println(&quot;狗:&quot;, d.Say())
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>上面的代码中定义了猫和狗，然后它们都会叫，你会发现main函数中明显有重复的代码，如果我们后续再加上猪、青蛙等动物的话，我们的代码还会一直重复下去。那我们能不能把它们当成“能叫的动物”来处理呢？</p> <p>像类似的例子在我们编程过程中会经常遇到：</p> <p>比如一个网上商城可能使用支付宝、微信、银联等方式去在线支付，我们能不能把它们当成“支付方式”来处理呢？</p> <p>比如三角形，四边形，圆形都能计算周长和面积，我们能不能把它们当成“图形”来处理呢？</p> <p>比如销售、行政、程序员都能计算月薪，我们能不能把他们当成“员工”来处理呢？</p> <p>Go语言中为了解决类似上面的问题，就设计了接口这个概念。</p> <p>接口区别于我们之前所有的具体类型，接口是一种抽象的类型。</p> <p>当你看到一个接口类型的值时，你不知道它是什么，唯一知道的是通过它的方法能做什么。</p> <h2 id="接口的定义"><a href="#接口的定义" class="header-anchor">#</a> 接口的定义</h2> <p>Go语言提倡面向接口编程。</p> <p>每个接口由数个方法组成，接口的定义格式如下</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type 接口类型名 interface{
+    方法名1( 参数列表1 ) 返回值列表1
+    方法名2( 参数列表2 ) 返回值列表2
+    …
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>其中：</p> <ul><li>接口名：使用type将接口定义为自定义的类型名。
+Go语言的接口在命名时，一般会在单词后面添加er，如有写操作的接口叫Writer，有字符串功能的接口叫Stringer等。
+接口名最好要能突出该接口的类型含义。</li> <li>方法名：当方法名首字母是大写且这个接口类型名首字母也是大写时，这个方法可以被接口所在的包（package）之外的代码访问。</li> <li>参数列表、返回值列表：参数列表和返回值列表中的参数变量名可以省略。</li></ul> <p>举个例子:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type writer interface{
+    Write([]byte) error
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>当你看到这个接口类型的值时，你不知道它是什么，唯一知道的就是可以通过它的Write方法来做一些事情。</p> <h2 id="实现接口的条件"><a href="#实现接口的条件" class="header-anchor">#</a> 实现接口的条件</h2> <p>一个对象只要全部实现了接口中的方法，那么就实现了这个接口。换句话说，接口就是一个<code>需要实现的方法列表</code>。</p> <p>我们来定义一个Sayer接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Sayer 接口
+type Sayer interface {
+	say()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>定义dog和cat两个结构体：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type dog struct {}
+
+type cat struct {}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>因为Sayer接口里只有一个say方法，所以我们只需要给dog和cat分别实现say方法就可以实现Sayer接口了。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// dog实现了Sayer接口
+func (d dog) say() {
+	fmt.Println(&quot;汪汪汪&quot;)
+}
+
+// cat实现了Sayer接口
+func (c cat) say() {
+	fmt.Println(&quot;喵喵喵&quot;)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>接口的实现就是这么简单，只要实现了接口中的所有方法，就实现了这个接口。</p> <h2 id="接口类型变量"><a href="#接口类型变量" class="header-anchor">#</a> 接口类型变量</h2> <p>那实现了接口有什么用呢？</p> <p><code>接口类型变量能够存储所有实现了该接口的实例。</code></p> <p>例如上面的示例中，Sayer类型的变量能够存储dog和cat类型的变量。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func main() {
+	var x Sayer // 声明一个Sayer类型的变量x
+	a := cat{}  // 实例化一个cat
+	b := dog{}  // 实例化一个dog
+	x = a       // 可以把cat实例直接赋值给x
+	x.say()     // 喵喵喵
+	x = b       // 可以把dog实例直接赋值给x
+	x.say()     // 汪汪汪
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="值接收者和指针接收者实现接口的区别"><a href="#值接收者和指针接收者实现接口的区别" class="header-anchor">#</a> 值接收者和指针接收者实现接口的区别</h2> <p>使用值接收者实现接口和使用指针接收者实现接口有什么区别呢？接下来我们通过一个例子看一下其中的区别。</p> <p>我们有一个Mover接口和一个dog结构体。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type Mover interface {
+	move()
+}
+
+type dog struct {}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="值接收者实现接口"><a href="#值接收者实现接口" class="header-anchor">#</a> 值接收者实现接口</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>func (d dog) move() {
+	fmt.Println(&quot;狗会动&quot;)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>此时实现接口的是dog类型：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func main() {
+	var x Mover
+	var wangcai = dog{} // 旺财是dog类型
+	x = wangcai         // x可以接收dog类型
+	var fugui = &amp;dog{}  // 富贵是*dog类型
+	x = fugui           // x可以接收*dog类型
+	x.move()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>从上面的代码中我们可以发现，使用值接收者实现接口之后，不管是dog结构体还是结构体指针<em>dog类型的变量都可以赋值给该接口变量。因为Go语言中有对指针类型变量求值的语法糖，dog指针fugui内部会自动求值</em>fugui。</p> <h3 id="指针接收者实现接口"><a href="#指针接收者实现接口" class="header-anchor">#</a> 指针接收者实现接口</h3> <p>同样的代码我们再来测试一下使用指针接收者有什么区别：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func (d *dog) move() {
+	fmt.Println(&quot;狗会动&quot;)
+}
+func main() {
+	var x Mover
+	var wangcai = dog{} // 旺财是dog类型
+	x = wangcai         // x不可以接收dog类型
+	var fugui = &amp;dog{}  // 富贵是*dog类型
+	x = fugui           // x可以接收*dog类型
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>此时实现Mover接口的是<em>dog类型，所以不能给x传入dog类型的wangcai，此时x只能存储</em>dog类型的值。</p> <h2 id="类型与接口的关系"><a href="#类型与接口的关系" class="header-anchor">#</a> 类型与接口的关系</h2> <h3 id="一个类型实现多个接口"><a href="#一个类型实现多个接口" class="header-anchor">#</a> 一个类型实现多个接口</h3> <p>一个类型可以同时实现多个接口，而接口间彼此独立，不知道对方的实现。 例如，狗可以叫，也可以动。我们就分别定义Sayer接口和Mover接口，如下： Mover接口。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Sayer 接口
+type Sayer interface {
+	say()
+}
+
+// Mover 接口
+type Mover interface {
+	move()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>dog既可以实现Sayer接口，也可以实现Mover接口。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type dog struct {
+	name string
+}
+
+// 实现Sayer接口
+func (d dog) say() {
+	fmt.Printf(&quot;%s会叫汪汪汪\n&quot;, d.name)
+}
+
+// 实现Mover接口
+func (d dog) move() {
+	fmt.Printf(&quot;%s会动\n&quot;, d.name)
+}
+
+func main() {
+	var x Sayer
+	var y Mover
+
+	var a = dog{name: &quot;旺财&quot;}
+	x = a
+	y = a
+	x.say()
+	y.move()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h3 id="多个类型实现同一接口"><a href="#多个类型实现同一接口" class="header-anchor">#</a> 多个类型实现同一接口</h3> <p>Go语言中不同的类型还可以实现同一接口 首先我们定义一个Mover接口，它要求必须由一个move方法。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Mover 接口
+type Mover interface {
+	move()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>例如狗可以动，汽车也可以动，可以使用如下代码实现这个关系：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type dog struct {
+	name string
+}
+
+type car struct {
+	brand string
+}
+
+// dog类型实现Mover接口
+func (d dog) move() {
+	fmt.Printf(&quot;%s会跑\n&quot;, d.name)
+}
+
+// car类型实现Mover接口
+func (c car) move() {
+	fmt.Printf(&quot;%s速度70迈\n&quot;, c.brand)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>这个时候我们在代码中就可以把狗和汽车当成一个会动的物体来处理了，不再需要关注它们具体是什么，只需要调用它们的move方法就可以了。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func main() {
+	var x Mover
+	var a = dog{name: &quot;旺财&quot;}
+	var b = car{brand: &quot;保时捷&quot;}
+	x = a
+	x.move()
+	x = b
+	x.move()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>上面的代码执行结果如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>旺财会跑
+保时捷速度70迈
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>并且一个接口的方法，不一定需要由一个类型完全实现，接口的方法可以通过在类型中嵌入其他类型或者结构体来实现。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// WashingMachine 洗衣机
+type WashingMachine interface {
+	wash()
+	dry()
+}
+
+// 甩干器
+type dryer struct{}
+
+// 实现WashingMachine接口的dry()方法
+func (d dryer) dry() {
+	fmt.Println(&quot;甩一甩&quot;)
+}
+
+// 海尔洗衣机
+type haier struct {
+	dryer //嵌入甩干器
+}
+
+// 实现WashingMachine接口的wash()方法
+func (h haier) wash() {
+	fmt.Println(&quot;洗刷刷&quot;)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="接口嵌套"><a href="#接口嵌套" class="header-anchor">#</a> 接口嵌套</h2> <p>接口与接口间可以通过嵌套创造出新的接口。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// Sayer 接口
+type Sayer interface {
+	say()
+}
+
+// Mover 接口
+type Mover interface {
+	move()
+}
+
+// 接口嵌套
+type animal interface {
+	Sayer
+	Mover
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>嵌套得到的接口的使用与普通接口一样，这里我们让cat实现animal接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>type cat struct {
+	name string
+}
+
+func (c cat) say() {
+	fmt.Println(&quot;喵喵喵&quot;)
+}
+
+func (c cat) move() {
+	fmt.Println(&quot;猫会动&quot;)
+}
+
+func main() {
+	var x animal
+	x = cat{name: &quot;花花&quot;}
+	x.move()
+	x.say()
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="空接口"><a href="#空接口" class="header-anchor">#</a> 空接口</h2> <h3 id="空接口的定义"><a href="#空接口的定义" class="header-anchor">#</a> 空接口的定义</h3> <p>空接口是指没有定义任何方法的接口。因此任何类型都实现了空接口。</p> <p>空接口类型的变量可以存储任意类型的变量。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func main() {
+	// 定义一个空接口x
+	var x interface{}
+	s := &quot;Hello 沙河&quot;
+	x = s
+	fmt.Printf(&quot;type:%T value:%v\n&quot;, x, x)
+	i := 100
+	x = i
+	fmt.Printf(&quot;type:%T value:%v\n&quot;, x, x)
+	b := true
+	x = b
+	fmt.Printf(&quot;type:%T value:%v\n&quot;, x, x)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="空接口的应用"><a href="#空接口的应用" class="header-anchor">#</a> 空接口的应用</h2> <h3 id="空接口作为函数的参数"><a href="#空接口作为函数的参数" class="header-anchor">#</a> 空接口作为函数的参数</h3> <p>使用空接口实现可以接收任意类型的函数参数。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 空接口作为函数参数
+func show(a interface{}) {
+	fmt.Printf(&quot;type:%T value:%v\n&quot;, a, a)
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="空接口作为map的值"><a href="#空接口作为map的值" class="header-anchor">#</a> 空接口作为map的值</h3> <p>使用空接口实现可以保存任意值的字典。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 空接口作为map值
+var studentInfo = make(map[string]interface{})
+studentInfo[&quot;name&quot;] = &quot;娜扎&quot;
+studentInfo[&quot;age&quot;] = 18
+studentInfo[&quot;married&quot;] = false
+fmt.Println(studentInfo)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="类型断言"><a href="#类型断言" class="header-anchor">#</a> 类型断言</h2> <p>空接口可以存储任意类型的值，那我们如何获取其存储的具体数据呢？</p> <h3 id="接口值"><a href="#接口值" class="header-anchor">#</a> 接口值</h3> <p>一个接口的值（简称接口值）是由一个具体类型和具体类型的值两部分组成的。这两部分分别称为接口的动态类型和动态值。</p> <p>想要判断空接口中的值可以使用类型断言，其语法格式：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>x.(T)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>其中：</p> <ul><li>x：表示类型为interface{}的变量</li> <li>T：表示断言x可能是的类型。</li></ul> <p>该语法返回两个参数，第一个参数是x转化为T类型后的变量，第二个值是一个布尔值，若为true则表示断言成功，为false则表示断言失败。</p> <p>举个例子：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func main() {
+	var x interface{}
+	x = &quot;Hello 沙河&quot;
+	v, ok := x.(string)
+	if ok {
+		fmt.Println(v)
+	} else {
+		fmt.Println(&quot;类型断言失败&quot;)
+	}
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>上面的示例中如果要断言多次就需要写多个if判断，这个时候我们可以使用switch语句来实现：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>func justifyType(x interface{}) {
+	switch v := x.(type) {
+	case string:
+		fmt.Printf(&quot;x is a string，value is %v\n&quot;, v)
+	case int:
+		fmt.Printf(&quot;x is a int is %v\n&quot;, v)
+	case bool:
+		fmt.Printf(&quot;x is a bool is %v\n&quot;, v)
+	default:
+		fmt.Println(&quot;unsupport type！&quot;)
+	}
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>因为空接口可以存储任意类型值的特点，所以空接口在Go语言中的使用十分广泛。</p> <p>关于接口需要注意的是，只有当有两个或两个以上的具体类型必须以相同的方式进行处理时才需要定义接口。不要为了接口而写接口，那样只会增加不必要的抽象，导致不必要的运行时损耗。</p> <h2 id="练习题"><a href="#练习题" class="header-anchor">#</a> 练习题</h2> <p>使用接口的方式实现一个既可以往终端写日志也可以往文件写日志的简易日志库。</p> <p><a href="https://www.liwenzhou.com/posts/Go/12_interface/" target="_blank" rel="noopener noreferrer">转载<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/code/golang/go-base.html" class="prev">
+        Golang基础
+      </a></span> <span class="next"><a href="/code/golang/go-concurrency.html">
+        Go并发编程
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4ab909ce.js" defer></script><script src="/assets/js/2.268f4e54.js" defer></script><script src="/assets/js/127.b36113ef.js" defer></script>
+  </body>
+</html>
